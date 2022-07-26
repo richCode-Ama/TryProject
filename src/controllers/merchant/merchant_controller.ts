@@ -4,28 +4,26 @@ import fakerService from '../../services/fakerService'
 
 const seedMerchantAndPizza = async(req:Request, res:Response, next:NextFunction) =>{
   try{
-        
-    
+        // clearing the datbase anytime
+    await prismaClient.pizza.deleteMany({})
     await prismaClient.merchant.deleteMany({})
+    // seeding to merchant 
     const data:any  =  await fakerService.fakerMercahntData()
     const CreateMerchant = await prismaClient.merchant.createMany({
       data:data
-      
     })
-
       const findMerchant = await prismaClient.merchant.findMany({
         select:{
           id:true
         }
       })    
      const finalPizzaData =  await fakerService.finalPizzaData(findMerchant);
-      
-     await prismaClient.pizza.deleteMany({})
+     // seeeding  pizza
      const CreatePizza = await prismaClient.pizza.createMany({
       data:finalPizzaData
-      
     })
-      return res.status(200).json({CreateMerchant});
+
+      return res.status(201).json({CreateMerchant});
      } 
     
      catch (error) {
