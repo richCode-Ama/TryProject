@@ -20,8 +20,6 @@ const fakerMercahntData =  async() =>{
    return data
 }
 
-
-
 const finalPizzaData =  async(merchants:any []) =>{
     const initialPizza =  await PizzaInitialFaker();
     initialPizza.forEach((element:any) => {
@@ -30,11 +28,6 @@ const finalPizzaData =  async(merchants:any []) =>{
     });
    return initialPizza
 }
-
-
-
-
-
 const PizzaInitialFaker =  async() =>{
     const data:any = []
     for(var i =0; i<2000; i++){
@@ -47,11 +40,6 @@ const PizzaInitialFaker =  async() =>{
    }
    return data
 }
-
-
-
-
-
 
 export default{
     fakerMercahntData,
