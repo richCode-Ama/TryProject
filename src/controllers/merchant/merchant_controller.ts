@@ -8,7 +8,7 @@ const seedMerchantAndPizza = async(req:Request, res:Response, next:NextFunction)
     await prismaClient.pizza.deleteMany({})
     await prismaClient.merchant.deleteMany({})
     // seeding to merchant 
-    const data:any  =  await fakerService.fakerMercahntData()
+    const data:any  =  await fakerService.fakerMerchantData()
     const CreateMerchant = await prismaClient.merchant.createMany({
       data:data
     })

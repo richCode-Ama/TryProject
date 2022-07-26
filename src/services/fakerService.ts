@@ -8,7 +8,7 @@ const PizzaType =["Vegetarian","Meat", "Cheese" ,"Sausage"]
 const generateArandomNumber =  (max:number) =>{
     return Math.floor(Math.random() * max);
   }
-const fakerMercahntData =  async() =>{
+const fakerMerchantData =  async() =>{
     const data:Partial<Merchant>[] = []
     for(var i =0; i<2000; i++){
          const data2:Partial<Merchant> = {
@@ -32,6 +32,7 @@ const PizzaInitialFaker =  async() =>{
     const data:any = []
     for(var i =0; i<2000; i++){
         const data2:any = {
+         name:faker.lorem.word(generateArandomNumber(7)+7),
          price:generateArandomNumber(100) +1,
          size: PizzaSize[generateArandomNumber(3)],
          type: PizzaType[generateArandomNumber(4)]
@@ -42,6 +43,6 @@ const PizzaInitialFaker =  async() =>{
 }
 
 export default{
-    fakerMercahntData,
+    fakerMerchantData,
     finalPizzaData
 }
