@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+  database_Service:
+    image: postgres:13-alpine
+    restart: on-failure
+    env_file: .env
+    container_name: database_Service
+    environment:
+      - PGDATA=/var/lib/postgresql/data/pgdata
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_DB=pizzaManDb
+    ports:
+      - "5432:5432"
+    volumes:
+       - pgdata:/var/lib/postgresql/data
+
+  
+  redis_service_dev-photos:
+    image: redis:6-alpine
+    env_file: .env
+    container_name: redis_service_pizzaMan
+    restart: on-failure
+    ports:
+      - "6379:6379"
+
+volumes:
+  pgdata:
