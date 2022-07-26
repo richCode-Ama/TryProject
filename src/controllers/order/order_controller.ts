@@ -1,9 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
 import prismaClient from '../../extensions/prisma_ext';
-import { Prisma } from '.prisma/client';
-import constants from '../../constants/constants';
-import { body } from 'express-validator';
-import { Decimal } from '@prisma/client/runtime';
 import BadRequestError from '../../errors/bad-request-error';
 
 const createOrder = async(req:Request, res:Response, next:NextFunction) =>{

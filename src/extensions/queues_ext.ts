@@ -30,4 +30,4 @@ const SearchFacesQueue = new Queue(
   },
 );
 
-export default { AppQueue, AppQueueScheduler, SearchFacesQueueScheduler,SearchFacesQueue };
+export default { AppQueue, AppQueueScheduler, SearchFacesQueueScheduler };
