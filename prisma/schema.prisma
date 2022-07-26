@@ -23,6 +23,7 @@ model Merchant {
 
 model Pizza {
   id         String    @id @default(uuid())
+  name       String?
   size       PizzaSize @default(small)
   type       PizzaType @default(Meat)
   merchantId String
