@@ -15,7 +15,7 @@ const createOrder = async(req:Request, res:Response, next:NextFunction) =>{
     if(!CreateOrder){
         throw new BadRequestError("sorry order couldn't go through");
       }
-    return res.status(200).json({ });
+    return res.status(201).json({ });
      
      } 
      catch (error) {
