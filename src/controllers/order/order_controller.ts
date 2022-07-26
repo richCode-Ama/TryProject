@@ -28,7 +28,8 @@ const createOrder = async(req:Request, res:Response, next:NextFunction) =>{
 
  const updateOrder = async(req:Request, res:Response, next:NextFunction) =>{
     try{
-       const  { orderId, personName, pizzaId } = req.body;    
+       const  { pizzaId, personName } = req.body;  
+       const orderId =  req.params.pizzaId;
       const UpdateOrder = await prismaClient.order.update({where:{
         id: orderId,
       },
@@ -54,7 +55,7 @@ const createOrder = async(req:Request, res:Response, next:NextFunction) =>{
 
    const DeleteOrder = async(req:Request, res:Response, next:NextFunction) =>{
     try{
-      const {orderId} =  req.body;
+      const orderId =  req.params.orderId;
       const DeleteOrder =  await prismaClient.order.delete({where:{
         id: orderId
       }})
@@ -72,7 +73,8 @@ const createOrder = async(req:Request, res:Response, next:NextFunction) =>{
 
    const getOrder = async(req:Request, res:Response, next:NextFunction) =>{
     try{
-      const {orderId} =  req.body;
+      
+      const orderId =  req.params.orderId;
       const Order = await prismaClient.order.findUnique({where:{
         id: orderId
       }})
