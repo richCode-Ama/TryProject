@@ -10,7 +10,7 @@ const generateArandomNumber =  (max:number) =>{
   }
 const fakerMerchantData =  async() =>{
     const data:Partial<Merchant>[] = []
-    for(var i =0; i<2000; i++){
+    for(var i =0; i<5000; i++){
          const data2:Partial<Merchant> = {
           name:faker.name.findName(),
           email:faker.internet.email(),
@@ -30,7 +30,7 @@ const finalPizzaData =  async(merchants:any []) =>{
 }
 const PizzaInitialFaker =  async() =>{
     const data:any = []
-    for(var i =0; i<2000; i++){
+    for(var i =0; i<1000; i++){
         const data2:any = {
          name:faker.lorem.word(generateArandomNumber(7)+7),
          price:generateArandomNumber(100) +1,

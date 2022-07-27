@@ -15,7 +15,7 @@ const createOrder = async(req:Request, res:Response, next:NextFunction) =>{
     if(!CreateOrder){
         throw new BadRequestError("sorry order couldn't go through");
       }
-    return res.status(201).json({ });
+    return res.status(201).json({ CreateOrder});
      
      } 
      catch (error) {
@@ -28,8 +28,12 @@ const createOrder = async(req:Request, res:Response, next:NextFunction) =>{
 
  const updateOrder = async(req:Request, res:Response, next:NextFunction) =>{
     try{
-       const  { pizzaId, personName } = req.body;  
-       const orderId =  req.params.pizzaId;
+
+      console.log("hello hpw are")
+       const  { pizzaId, personName } = req.body; 
+       console.log("fdfdfdf", pizzaId) 
+       const orderId =  req.params.orderId;
+       
       const UpdateOrder = await prismaClient.order.update({where:{
         id: orderId,
       },
@@ -56,9 +60,12 @@ const createOrder = async(req:Request, res:Response, next:NextFunction) =>{
    const DeleteOrder = async(req:Request, res:Response, next:NextFunction) =>{
     try{
       const orderId =  req.params.orderId;
-      const DeleteOrder =  await prismaClient.order.delete({where:{
+      const DeletedOrder =  await prismaClient.order.delete({where:{
         id: orderId
-      }})
+      },
+    select:{
+      id:true,
+    }})
       if(!DeleteOrder){
         throw new BadRequestError("sorry Delete wasn't succesful");
       }
@@ -77,7 +84,18 @@ const createOrder = async(req:Request, res:Response, next:NextFunction) =>{
       const orderId =  req.params.orderId;
       const Order = await prismaClient.order.findUnique({where:{
         id: orderId
-      }})
+      },
+    select:{
+      personName:true,   
+      pizza:{
+      select:{
+        merchant:true,
+        name:true,
+        price:true,
+        size:true,
+        type:true,
+      }
+    }}})
       if(!Order){
         throw new BadRequestError("sorry Couldn't fine this order");
       }
