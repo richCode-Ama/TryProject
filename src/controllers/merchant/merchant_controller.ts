@@ -41,7 +41,7 @@ const seedMerchantAndPizza = async(req:Request, res:Response, next:NextFunction)
     }})
     
 
-      return res.status(201).json({Allpizza});
+      return res.status(200).json({Allpizza});
      } 
     
      catch (error) {
@@ -57,7 +57,7 @@ const seedMerchantAndPizza = async(req:Request, res:Response, next:NextFunction)
     }})
     
 
-      return res.status(201).json({AllMerchant});
+      return res.status(200).json({AllMerchant});
      } 
     
      catch (error) {
