@@ -23,17 +23,13 @@ const createOrder = async(req:Request, res:Response, next:NextFunction) =>{
      catch (error) {
          return next(error);
        }
- 
- 
  }
 
 
  const updateOrder = async(req:Request, res:Response, next:NextFunction) =>{
     try{
-
-      console.log("hello hpw are")
-       const  { pizzaId, personName } = req.body; 
-       console.log("fdfdfdf", pizzaId) 
+       const  { pizzaId, personName,merchantId } = req.body; 
+     
        const orderId =  req.params.orderId;
        
       const UpdateOrder = await prismaClient.order.update({where:{
@@ -41,7 +37,8 @@ const createOrder = async(req:Request, res:Response, next:NextFunction) =>{
       },
        data:{
         personName:personName,
-        pizzaId:pizzaId    
+        pizzaId:pizzaId,
+        merchantId    
        }})
 
        if(!UpdateOrder){
