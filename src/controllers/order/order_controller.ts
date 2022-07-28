@@ -4,12 +4,14 @@ import BadRequestError from '../../errors/bad-request-error';
 
 const createOrder = async(req:Request, res:Response, next:NextFunction) =>{
   try{
-    const{pizzaId, personName } = req.body
+    const{pizzaId, personName, merchantId } = req.body
     const CreateOrder = await prismaClient.order.create({
         data:{
             pizzaId,
+            merchantId,
             personName
-        }
+        },
+
     })
 
     if(!CreateOrder){
