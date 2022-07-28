@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import prismaClient from '../../extensions/prisma_ext';
+import BadRequestError from '../../errors/bad-request-error';
 import fakerService from '../../services/fakerService'
 
 const seedMerchantAndPizza = async(req:Request, res:Response, next:NextFunction) =>{
@@ -40,7 +41,9 @@ const seedMerchantAndPizza = async(req:Request, res:Response, next:NextFunction)
       id:true,name:true, price:true, size:true, type:true,  merchant:true
     }})
     
-
+    if(!Allpizza){
+      throw new BadRequestError("sorry couldn't get all pizza");
+    }
       return res.status(200).json({Allpizza});
      } 
     
@@ -56,6 +59,10 @@ const seedMerchantAndPizza = async(req:Request, res:Response, next:NextFunction)
       id:true, email:true,name:true, Order:true
     }})
     
+    
+    if(!AllMerchant){
+      throw new BadRequestError("sorry couldn't get all the merchants");
+    }
 
       return res.status(200).json({AllMerchant});
      } 
