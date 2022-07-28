@@ -31,7 +31,40 @@ const seedMerchantAndPizza = async(req:Request, res:Response, next:NextFunction)
          return next(error);
     }
  }
+
+
+ const getAllPizza = async(req:Request, res:Response, next:NextFunction) =>{
+  try{
+   
+    const Allpizza = await prismaClient.pizza.findMany({select:{
+      id:true,name:true, price:true, size:true, type:true,  merchant:true
+    }})
+    
+
+      return res.status(201).json({Allpizza});
+     } 
+    
+     catch (error) {
+         return next(error);
+    }
+ }
+
+ const getAllMerchant = async(req:Request, res:Response, next:NextFunction) =>{
+  try{
+   
+    const AllMerchant = await prismaClient.merchant.findMany({select:{
+      id:true, email:true,name:true, Order:true
+    }})
+    
+
+      return res.status(201).json({AllMerchant});
+     } 
+    
+     catch (error) {
+         return next(error);
+    }
+ }
  
 export default{
-    seedMerchantAndPizza,
+    seedMerchantAndPizza, getAllPizza, getAllMerchant
 }
